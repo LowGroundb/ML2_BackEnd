@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
 
-const {users} = require("../mockData.js");
+const { users } = require("../mockData.js");
 
 
 router.get('/user/:userId', (req, res) => {

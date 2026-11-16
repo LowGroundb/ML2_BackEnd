@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
 
-const { users } = require("../mockData.js");
+const { users, goals } = require("../mockData.js");
 
 
 router.get('/user/:userId', (req, res) => {
@@ -50,6 +50,26 @@ router.delete('/user/:userId', (req, res) => {
   users.splice(index, 1);
   
   res.json({ message: "User deleted successfully" });
+});
+
+router.get('/user/:userId/goals', (req, res) => {
+    const id = parseInt(req.params.userId);
+    const userGoals = goals.filter(g => g.userId === id);
+
+    if (userGoals.length === 0) {
+        return res.status(404).json({ error: "No goals found for this user" });
+    }
+
+    res.json(userGoals);
+});
+
+router.post('/user/:userId/goals', (req, res) => {
+    const id = parseInt(req.params.userId);
+    const newGoal = { goalId: goals.length + 1, userId: id, ...req.body };
+
+    goals.push(newGoal);
+
+    res.status(201).json({ message: "Goal created successfully", goal: newGoal });
 });
 
 module.exports = router;

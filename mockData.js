@@ -15,6 +15,7 @@ let users = [
 let goals = [
   {
     goalId: 1,
+    userId: 1,
     goalType: "Maintenance",
     targetWeight: 69.5,
     targetCalories: 2000,
@@ -47,6 +48,7 @@ let foods = [
 let meals = [
   {
     mealId: 1,
+    userId: 1,
     mealType: "Breakfast",
     timestamp: "2026-11-16T08:30:00Z",
     totalCalories: 350.0,
@@ -57,6 +59,7 @@ let meals = [
 let exercises = [
   {
     exerciseId: 1,
+    userId: 1,
     type: "Running",
     durationMinutes: 30,
     caloriesBurned: 300.0,

@@ -12,11 +12,15 @@ router.get('/user/:userId', (req, res) => {
         return res.status(404).json({ error: "User not found" });
     }
 
+    console.log(`Retrieved user with ID: ${id}`);
+
     res.json(user);
 });
 
 router.post('/user', (req, res) => {
     const newUser = req.body;
+
+    console.log(`Creating new user with ID: ${newUser.userId}`);
 
     users.push(newUser); // Add it to mock array in memory
 
@@ -34,6 +38,8 @@ router.put('/user/:userId', (req, res) => {
   // Update the user's properties with whatever the frontend sent
   user.weight = req.body.weight || user.weight;
   user.height = req.body.height || user.height;
+
+  console.log(`Updated user with ID: ${id}`);
   
   res.json({ message: "User updated successfully", user });
 });
@@ -48,6 +54,8 @@ router.delete('/user/:userId', (req, res) => {
   
   // Remove 1 item from the array at that index position
   users.splice(index, 1);
+
+  console.log(`Deleted user with ID: ${id}`);
   
   res.json({ message: "User deleted successfully" });
 });
@@ -68,6 +76,8 @@ router.post('/user/:userId/goals', (req, res) => {
     const newGoal = { goalId: goals.length + 1, userId: id, ...req.body };
 
     goals.push(newGoal);
+
+    console.log(`Created new goal for user ID: ${id}`);
 
     res.status(201).json({ message: "Goal created successfully", goal: newGoal });
 });
